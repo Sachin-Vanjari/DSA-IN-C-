@@ -1,0 +1,12 @@
+void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        vector<int> temp(n);
+        for(int i = 0; i < n; i++)
+        {
+          //rotate and copy nums array into temp array
+            temp[(i+k) % n] = nums[i];
+        }
+        //copy value of temp array into nums array
+        nums = temp;
+        
+    }
