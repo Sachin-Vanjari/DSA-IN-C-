@@ -41,3 +41,46 @@ using namespace std;
 
      cout << "YOUR INDEX IS : "<< search;
  }
+
+
+
+
+
+// using Recursion 
+
+
+int binary(int arr[], int s, int e, int key)
+{
+    if(s > e)
+    return false;
+
+    int mid = (s + e)/2;
+
+    if(arr[mid] == key)
+    return true;
+
+    if(arr[mid] > key)
+    {
+        return binary(arr, s, e - 1, key);
+    }
+    else{
+         return binary(arr, s + 1, e, key);
+    }
+}
+
+int main()
+{
+    int arr[5] = {1,2,3,4,5};
+    int s = 0;
+    int e = 4;
+    int key = 6;
+    int ans = binary(arr, s, e, key);
+
+    if(ans)
+    {
+       cout<< "key is present";
+    }
+    else{
+         cout<< "key is absent";
+    }
+}
