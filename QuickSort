@@ -1,1 +1,66 @@
-hello
+#include<iostream>
+using namespace std;
+
+int pivort(int *arr, int s, int e)
+{
+    int pivort = arr[s];
+
+    int cnt = 0;
+
+    for(int i = s+1; i <= e; i++)
+    {
+        if(arr[i] <= pivort)
+        {
+            
+            cnt++;
+        }
+    }
+
+    int pivortindex = s + cnt;
+    swap(arr[pivortindex], arr[s]);
+
+    int i = s, j = e;
+
+    while(i < pivortindex && j > pivortindex)
+    {
+        while(arr[i] <= pivort)
+        {
+            i++;
+        }
+        while(arr[j] > pivort)
+        {
+            j--;
+        }
+
+        if(i < pivortindex && j > pivortindex)
+        {
+            swap(arr[i++], arr[j--]);
+        }
+    }
+    return pivortindex;
+}
+
+void quicksort(int *arr, int s, int e)
+{
+    if(s >= e)
+    return ;
+
+    int p = pivort(arr, s, e);
+
+    quicksort(arr, s, p - 1);
+    quicksort(arr, p + 1, e);
+
+}
+
+int main()
+{
+    int arr[6] = {454,55,35555,6,77,1};
+    int n = 6;
+
+    quicksort(arr, 0, n-1);
+
+    for(int i = 0; i < n; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+}
